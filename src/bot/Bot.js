@@ -2,13 +2,13 @@ const { readdirSync } = require('fs');
 const { resolve: resolvePath } = require('path');
 
 module.exports = class extends require('../util/EventEmitter') {
-	constructor(channelAccessToken, { port, fetchUserOnMessage } = {}) {
+	constructor(channelAccessToken, { port, fetchUserOnEvent } = {}) {
 		super();
 
 		if (typeof channelAccessToken !== 'string') throw new TypeError('You need to pass ChannelAccessToken as String');
 
 		this._port = port || 8000;
-		this._fetchUserOnMessage = fetchUserOnMessage ? true : false;
+		this._fetchUserOnEvent = fetchUserOnEvent ? true : false;
 
 		this._requestManager = new (require('./rest/RequestManager'))(channelAccessToken);
 		this._events = {};
