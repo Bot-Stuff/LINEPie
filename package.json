@@ -1,0 +1,22 @@
+{
+  "name": "line-pie",
+  "version": "1.0.1",
+  "description": "A blazing fast wrapper that helps you interact with LINE's API.",
+  "main": "./src/index",
+  "author": "IPv6",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LINEPie/LINEPie"
+  },
+  "bugs": {
+    "url": "https://github.com/LINEPie/LINEPie/issues"
+  },
+  "homepage": "https://github.com/LINEPie/LINEPie#readme",
+  "devDependencies": {
+    "eslint": "^5.3.0"
+  },
+  "engines": {
+    "node": ">= 8.6.0"
+  }
+}
