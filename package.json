@@ -1,10 +1,19 @@
 {
   "name": "line-pie",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A blazing fast wrapper that helps you interact with LINE's API.",
   "main": "./src/index",
   "author": "IPv6",
   "license": "Apache-2.0",
+  "keywords": [
+    "line",
+    "line bot",
+    "line api",
+    "line bot api",
+    "line app api",
+    "line messaging",
+    "line messaging api"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/LINEPie/LINEPie"
