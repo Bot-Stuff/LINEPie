@@ -1,6 +1,6 @@
 {
   "name": "line-pie",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A blazing fast wrapper that helps you interact with LINE's API.",
   "main": "./src/index",
   "author": "IPv6",

@@ -18,18 +18,14 @@ module.exports = class {
 		return new Promise((resolve, reject) => {
 			const options =	objectAssign({ method, path: `${path}/${endpoint}` }, this.options);
 
-			if (body) {
-				body = stringifyJSON(body);
-				options.headers['Content-Length'] = String(byteLength(body));
-			}
+			if (body) options.headers['Content-Length'] = String(byteLength(stringifyJSON(body)));
+			
 			const request = HTTPSRequest(options, response => {
 				const responseBody = response.pipe(PassThrough());
-				responseBody.on('data', data => {
-					body = parseJSON(data);
-					if (response.statusCode === 200) resolve(body);
-					else reject(body);
-					response.on('error', reject);
-				});
+				let returnBody = '';
+				responseBody.on('data', data => returnBody += data);
+				responseBody.on('end', () => response.statusCode === 200 ? resolve(parseJSON(returnBody)) : reject(parseJSON(returnBody)));
+				response.on('error', reject);
 			});
 
 			request.on('error', reject);
