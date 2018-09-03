@@ -50,9 +50,8 @@ module.exports = class {
 
 	removeListenner(event, eventFunctionToRemove) {
 		if (this.events.includes(event)) {
-			if (eventFunctionToRemove) {
-				for (const [index, { eventFunction }] of this._listeners[event].entries()) if (eventFunctionToRemove === eventFunction) this._listeners[event].splice(index, 1);
-			} else {
+			if (eventFunctionToRemove) for (const [index, { eventFunction }] of this._listeners[event].entries()) if (eventFunctionToRemove === eventFunction) this._listeners[event].splice(index, 1);
+			 else {
 				delete this._listeners[event];
 				this.events.splice(this.events.indexOf(event), 1);
 			}

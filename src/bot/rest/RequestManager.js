@@ -18,7 +18,10 @@ module.exports = class {
 		return new Promise((resolve, reject) => {
 			const options =	objectAssign({ method, path: `${path}/${endpoint}` }, this.options);
 
-			if (body) options.headers['Content-Length'] = String(byteLength(stringifyJSON(body)));
+			if (body) {
+				body = stringifyJSON(body);
+				options.headers['Content-Length'] = String(byteLength(body));
+			}
 			
 			const request = HTTPSRequest(options, response => {
 				const responseBody = response.pipe(PassThrough());

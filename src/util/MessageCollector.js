@@ -10,7 +10,6 @@ module.exports = class extends require('./EventEmitter') {
 		this.maxLimit = max || 1;
 	}
 
-
 	handle(message) {
 		if (this.filter(message)) {
 			this.emit('collect', message);
