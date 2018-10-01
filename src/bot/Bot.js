@@ -7,6 +7,7 @@ module.exports = class extends require('../util/EventEmitter') {
 		this._port = port || 8000;
 		this._requestManager = new (require('./rest/RequestManager'))(channelAccessToken);
 		this._events = {};
+		this.extenders = require('../../util/Extender');
 
 		for (const fileName of readDirectory(`${__dirname}\\events`)) this._events[fileName.replace(/\..*/, '').replace(/^\w/, character => character.toLowerCase())] = new (require(`./events/${fileName}`))(this);
 		new (require('./rest/Server'))()
