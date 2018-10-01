@@ -1,4 +1,4 @@
-const { request: HTTPSRequest } = require('https');
+const { request: netRequest } = require('https');
 const { PassThrough } = require('stream');
 const { stringify: stringifyJSON, parse: parseJSON } = JSON;
 const { byteLength } = Buffer;
@@ -23,11 +23,12 @@ module.exports = class {
 				options.headers['Content-Length'] = String(byteLength(body));
 			}
 			
-			const request = HTTPSRequest(options, response => {
+			const request = netRequest(options, response => {
 				const responseBody = response.pipe(PassThrough());
 				let returnBody = '';
-				responseBody.on('data', data => returnBody += data);
-				responseBody.on('end', () => response.statusCode === 200 ? resolve(parseJSON(returnBody)) : reject(parseJSON(returnBody)));
+				responseBody.on('data', data => {
+					returnBody += data
+				}).on('end', () => response.statusCode === 200 ? resolve(parseJSON(returnBody)) : reject(parseJSON(returnBody)));
 				response.on('error', reject);
 			});
 
