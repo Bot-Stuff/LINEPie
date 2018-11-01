@@ -1,6 +1,5 @@
 module.exports = class {
 	static get(structure) {
-		console.log(structures[structure]);
 		return structures[structure];
 	}
 
